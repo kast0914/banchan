@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>석식 출석체크 시스템</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <!-- 연한 핑크색 배경에 추가된 아이콘들 -->
+    <div class="body-icon-left-top"></div>
+    <div class="body-icon-left-bottom"></div>
+    <div class="body-icon-right-top"></div>
+    <div class="body-icon-right-bottom"></div>
+
+    <!-- 배너 섹션 -->
+    <div class="banner">
+        <img src="rice.png" alt="Rice Logo" class="logo">
+        <h1 class="banner-title">석식 출석체크 시스템</h1>
+    </div>
+
+    <!-- 파일 업로드 섹션 -->
+    <div id="file-upload-section">
+        <label for="file-upload">석식 명단 엑셀 파일 업로드:</label>
+        <input type="file" id="file-upload" accept=".xlsx">
+        <button onclick="loadExcelFile()">다음</button>
+    </div>
+
+    <!-- 요일 선택 섹션 -->
+    <div id="day-select-section" style="display:none;">
+        <label for="day-select">요일 선택:</label>
+        <select id="day-select">
+            <option value="월">월요일</option>
+            <option value="화">화요일</option>
+            <option value="수">수요일</option>
+            <option value="목">목요일</option>
+        </select>
+        <button onclick="loadDayData()">명단 로드</button>
+    </div>
+
+    <!-- 학번 입력 섹션 -->
+    <div id="student-input-section" style="display:none;">
+        <label for="student-id">학번 입력:</label>
+        <input type="text" id="student-id" placeholder="학번 입력">
+        <button onclick="checkAttendance()">확인</button>
+        <p id="result"></p>
+        <button id="download-button" onclick="downloadExcel()" style="display:none;">파일 다운로드</button>
+    </div>
+
+    <!-- 성공 및 실패 효과음 -->
+    <audio id="correct-sound" src="correct.mp3"></audio>
+    <audio id="wrong-sound" src="wrong.mp3"></audio>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+    <script src="script.js"></script>
+    
+    <!-- 목표 및 현재 출석 인원 그래프 -->
+<div id="attendance-statistics" style="display:none;">
+    <h2 id="day-title"></h2>
+    <canvas id="goalChart" width="600" height="400"></canvas>
+</div>
+
+
+</body>
+</html>
